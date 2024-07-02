@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
+import { provideHttpClient, withInterceptorsFromDi, withFetch } from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms'; // Importar FormsModule
 
 @NgModule({
   declarations: [
@@ -10,9 +10,14 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule // Adicionar FormsModule
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(
+      withInterceptorsFromDi(),
+      withFetch()
+    )
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
